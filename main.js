@@ -1,3 +1,5 @@
+var android = navigator.userAgent.match(/android/ig);
+
 $(document).ready(function(){
     var places, geolocation;
     
@@ -15,7 +17,7 @@ $(document).ready(function(){
     }
     
     var display = function(){
-        $("#rowery").html('');
+        $("#rowery > tbody").html('');
         places = sortPlaces(places);
         var list = places.forEach(function(_place) {
             var place = $(_place);
@@ -31,7 +33,7 @@ $(document).ready(function(){
                     q: [place.attr('lat'),place.attr('lng')].join(",")
                 };
             
-            $('#rowery').append(template(params));
+            $('#rowery > tbody').append(template(params));
         });
     };
     
@@ -43,7 +45,11 @@ $(document).ready(function(){
     
     navigator.geolocation.getCurrentPosition(geoloc);
     
-    var template = _.template("<li><a href=\"geo:<%= q %>\"><%= name %><span class=\"label pull-right <%= status %>\"><%= bikes %></a></li>");
+    var template;
+    if(android)
+        template = _.template("<tr><th><a href=\"geo:<%= q %>\"><%= name %></a></th><td><span class=\"label pull-right <%= status %>\"><%= bikes %></tr>");
+    else
+     template = _.template("<tr><th><a href=\"https://maps.google.com/maps?q=<%= q %>\"><%= name %></a></th><td><span class=\"label pull-right <%= status %>\"><%= bikes %></tr>");
     $.get('https://nextbike.net/maps/nextbike-official.xml?&domains=kp&maponly=1').done(function(data){
         $("#info").html('');    
         places = $(data).find('place')
@@ -52,4 +58,13 @@ $(document).ready(function(){
         $("#info").html('<div class="alert alert-danger">Coś poszło nie tak :(</div>');
         console.log(err);
     });
-})
+});
+$(document).ready(function(){
+    if (android) {
+        $('.promo-web').hide();
+        $('.promo-android').show();
+    } else {
+        $('.promo-web').show();
+        $('.promo-android').hide();
+    }
+});
