@@ -1,12 +1,22 @@
-extends base.static
+extends layout.static
 
-block city
-  script.
-    var city = 232;
-
-block append helpdesk
-  li: a(href="http://kmkbike.pl") KMKBike
-  li: a(href="tel:+48126167575") BOK: 12 616 75 75  
-  
-block prepend footer
-  p.text-center Znajdź najbliższą stację <a href="http://kmkbike.pl">KMKBike</a> i sprawdź liczbę dostępnych rowerów. 
+block content
+  .jumbotron
+    .container
+      h1 Rower miejski?
+      p 
+        | Sprawdź gdzie najbliżej wypożyczysz! 
+      p
+        | Znajdujemy rowery w 
+        a(href='/krakow.html') Krakowie,
+        |  
+        a(href='/opole.html') Opolu,
+        |          
+        a(href='/poznan.html') Poznaniu,
+        |          
+        a(href='/trojmiasto.html') Trójmieście,
+        |    
+        a(href='/warszawa.html') Warszawie
+        |  oraz 
+        a(href='/wroclaw.html') Wrocławiu
+        | .
