@@ -1,8 +1,22 @@
 $(document).ready(function(){
-    var template = _.template("<li><a href=\"geo:<%= q %>\"><%= name %><span class=\"label pull-right <%= status %>\"><%= bikes %></a></li>");
-    $.get('https://nextbike.net/maps/nextbike-official.xml?&domains=kp&maponly=1').done(function(data){
-        $("#info").html('');    
-        var places = _.sortBy($(data).find('place'), function(place) { return $(place).attr('name'); });
+    var places, geolocation;
+    
+    var sortPlaces = function(places) {
+        if(geolocation) {
+            return _.sortBy(places, function(place) { 
+                // This should be good-enough approximation
+                var x = geolocation.coords.latitude-parseFloat($(place).attr('lat'));
+                var y = geolocation.coords.longitude-parseFloat($(place).attr('lng'));
+                return Math.sqrt(x*x+y*y);
+            });
+        } else {
+            return _.sortBy(places, function(place) { return $(place).attr('name'); });
+        }
+    }
+    
+    var display = function(){
+        $("#rowery").html('');
+        places = sortPlaces(places);
         var list = places.forEach(function(_place) {
             var place = $(_place);
             var numBikes = parseInt(place.attr('bikes'));
@@ -19,7 +33,21 @@ $(document).ready(function(){
             
             $('#rowery').append(template(params));
         });
-        
+    };
+    
+    var geoloc = function(_geolocation) {
+        geolocation = _geolocation;
+        if(places)
+            display();
+    };
+    
+    navigator.geolocation.getCurrentPosition(geoloc);
+    
+    var template = _.template("<li><a href=\"geo:<%= q %>\"><%= name %><span class=\"label pull-right <%= status %>\"><%= bikes %></a></li>");
+    $.get('https://nextbike.net/maps/nextbike-official.xml?&domains=kp&maponly=1').done(function(data){
+        $("#info").html('');    
+        places = $(data).find('place')
+        display();
     }).fail(function(err){
         $("#info").html('<div class="alert alert-danger">Coś poszło nie tak :(</div>');
         console.log(err);
