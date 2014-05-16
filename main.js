@@ -57,7 +57,7 @@ $(document).ready(function(){
             var params = {
                     name: place.attr('name'), 
                     bikes: place.attr('bikes'), 
-                    distance: (place.attr('distance')?'('+(parseFloat(place.attr('distance'))).toFixed(1)+' km)':''), 
+                    distance: (place.attr('distance')?'('+(parseFloat(place.attr('distance'))).toFixed(1)+' km)':''), 
                     status: status,
                     prefix: android?'geo:':'https://maps.google.com/maps?q=',
                     q: [place.attr('lat'),place.attr('lng')].join(",")
