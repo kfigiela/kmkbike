@@ -1,0 +1,30 @@
+{
+  "name": "brunch-bower-site",
+  "version": "0.0.1",
+  "description": "ERROR: No README.md file found!",
+  "dependencies": {
+    "jade": "*",
+    "coffee-script": "*",
+    "brunch": "*",
+    "bower": "*",
+    "auto-reload-brunch": "~1.7",
+    "less-brunch": "~1.7",
+    "coffee-script-brunch": "~1.8",
+    "uglify-js-brunch": "~1.7",
+    "clean-css-brunch": "~1.7",
+    "bower-stylesheet-brunch": "*",
+    "bower-javascript-brunch": "*",
+    "bower-asserts-brunch": "*",
+    "jaded-brunch": "~1.7.11"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "brunch watch --server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GulinSS/brunch-bower-site.git"
+  },
+  "author": "gulin.serge@gmail.com",
+  "license": "BSD"
+}
