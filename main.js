@@ -21,7 +21,7 @@ $(document).ready(function(){
         });
         
     }).fail(function(err){
-        $("#info").html('<div class="alert alert-error">Coś poszło nie tak :(</div>');
+        $("#info").html('<div class="alert alert-danger">Coś poszło nie tak :(</div>');
         console.log(err);
     });
 })
