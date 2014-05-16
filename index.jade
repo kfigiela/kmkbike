@@ -15,7 +15,6 @@ html.no-js
     meta(name='description', content='')
     meta(name='viewport', content='width=device-width, initial-scale=1')
     link(href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css", rel="stylesheet")
-    link(href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css", rel="stylesheet")
     link(href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/flatly/bootstrap.min.css", rel="stylesheet")
     script(src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js", type='text/javascript')
     style.
@@ -25,7 +24,17 @@ html.no-js
       .container
         .navbar-header
           a.navbar-brand(href='#') Gdzie jest rower?
+        ul.nav.navbar-nav.navbar-right
+          li
+            a(href="")
+              span.glyphicon.glyphicon-refresh
+
     .container
+      #info
+        .alert.alert-info 
+          span.glyphicon.glyphicon-refresh
+          |  Ładowanie danych…
+        
       ul#rowery.nav.nav-stacked
       hr
       footer

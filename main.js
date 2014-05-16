@@ -1,6 +1,7 @@
 $(document).ready(function(){
-    var template = _.template("<li><a href=\"http://maps.google.com/maps?q=<%= q %>\"><%= name %><span class=\"label pull-right <%= status %>\"><%= bikes %></a></li>");
+    var template = _.template("<li><a href=\"geo:<%= q %>\"><%= name %><span class=\"label pull-right <%= status %>\"><%= bikes %></a></li>");
     $.get('https://nextbike.net/maps/nextbike-official.xml?&domains=kp&maponly=1').done(function(data){
+        $("#info").html('');    
         var places = _.sortBy($(data).find('place'), function(place) { return $(place).attr('name'); });
         var list = places.forEach(function(_place) {
             var place = $(_place);
@@ -20,6 +21,7 @@ $(document).ready(function(){
         });
         
     }).fail(function(err){
-        alert("cos poszlo nie tak");
+        $("#info").html('<div class="alert alert-error">Coś poszło nie tak :(</div>');
+        console.log(err);
     });
 })
