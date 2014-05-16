@@ -34,7 +34,7 @@ $(document).ready(function(){
     
     var updateDistances = function() {
         if(places && geolocation) {
-            places.each(function(_idx,_place){
+            $(places).each(function(_idx,_place){
                 var place = $(_place);
                 var distance = getDistanceFromLatLonInKm(geolocation.coords.latitude, geolocation.coords.longitude, parseFloat(place.attr('lat')), parseFloat(place.attr('lng')));
                 place.attr('distance', distance);

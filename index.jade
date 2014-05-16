@@ -35,15 +35,17 @@ html.no-js
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          a.navbar-brand(href='#') Znajdź rower!
+          a.navbar-brand(href='#')
+            //- img(src="icon-white.png", style="height: 1.5em;")
+            |  Znajdź rower!
       
         .navbar-collapse.collapse
           ul.nav.navbar-nav
-            li: a(href="http://kmkbike.pl") KMKBike
-            li: a(href="tel:+48126167575") BOK: 12 616 75 75
-          ul.nav.navbar-nav.navbar-right
             li: a(href="") 
               span.glyphicon.glyphicon-refresh
+          ul.nav.navbar-nav.navbar-right
+            li: a(href="http://kmkbike.pl") KMKBike
+            li: a(href="tel:+48126167575") BOK: 12 616 75 75
       
     .container
       p.promo-web.text-center Poszukujesz kompana na przejażdżkę? Umów się przez <a href="https://my.dropsport.com">Dropsport</a>!
